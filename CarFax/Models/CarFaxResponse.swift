@@ -13,7 +13,7 @@ struct CardFaxResponse: Codable {
 }
 
 struct Listing: Codable {
-    let images: [Image]?
+    let images: Image?
     let listPrice: Int?
     let year: Int?
     let make: String?
@@ -24,7 +24,7 @@ struct Listing: Codable {
 }
 
 struct Image: Codable {
-    let firstPhoto: [Photo]?
+    let firstPhoto: Photo?
 }
 
 struct Photo: Codable {

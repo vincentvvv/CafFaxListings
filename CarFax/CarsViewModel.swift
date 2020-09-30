@@ -13,6 +13,7 @@ class CarsViewModel {
     enum State {
         case loading
         case loaded
+        case error(error: ApiError)
     }
 
     public var state = Observable<State>()
@@ -22,7 +23,13 @@ class CarsViewModel {
         self.carFaxService = carFaxService
     }
 
-    func fetchCars() {
+    func fetchListings() {
         state.on(.next(.loading))
+
+        carFaxService.getListings(onNext: { [weak self] listings in
+            self?.state.on(.next(.loaded))
+        }, onError: { [weak self] error in
+            self?.state.on(.next(.error(error: error)))
+        })
     }
 }

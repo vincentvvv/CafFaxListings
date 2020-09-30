@@ -18,11 +18,18 @@ class CarsViewModel {
 
     public var state = Observable<State>()
     private let carFaxService: CarFaxService
-    
+
     var listings: [Listing] = []
 
     init(carFaxService: CarFaxService) {
         self.carFaxService = carFaxService
+    }
+
+    func getListing(at index: Int) -> Listing? {
+        guard (0...listings.count).contains(index) else {
+            return nil
+        }
+        return listings[index]
     }
 
     func fetchListings() {

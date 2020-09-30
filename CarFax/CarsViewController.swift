@@ -81,10 +81,15 @@ class CarsViewController: UIViewController {
 extension CarsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cellHeightCache[indexPath] = cell.bounds.size.height
+
+        guard let listingCell = tableView.dequeueReusableCell(withIdentifier: listingCellIdentifier) as? ListingCell else {
+            return
+        }
+        listingCell.listing = viewModel.getListing(at: indexPath.row)
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeightCache[indexPath] ?? 100
+        return cellHeightCache[indexPath] ?? 200
     }
 }
 

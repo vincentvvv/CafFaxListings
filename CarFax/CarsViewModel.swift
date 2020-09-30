@@ -16,8 +16,11 @@ class CarsViewModel {
     }
 
     public var state = Observable<State>()
+    private let carFaxService: CarFaxService
 
-    init() {}
+    init(carFaxService: CarFaxService) {
+        self.carFaxService = carFaxService
+    }
 
     func fetchCars() {
         state.on(.next(.loading))

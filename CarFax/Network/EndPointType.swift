@@ -12,13 +12,13 @@ protocol EndPointType {
     var url: URL? { get }
 }
 
-public enum CardFaxEndPoint: EndPointType {
-    case cars
+public enum CardFaxEndPointType: EndPointType {
+    case listings
     case image(url: String)
 
     var url: URL? {
         switch self {
-        case .cars: return URL(string: "https://carfax-for-consumers.firebaseio.com/assignment.json")
+        case .listings: return URL(string: "https://carfax-for-consumers.firebaseio.com/assignment.json")
         case .image(let url): return URL(string: url)
         }
     }

@@ -9,11 +9,14 @@
 import UIKit
 import SnapKit
 
-class CarsViewController: UIViewController, UITableViewDelegate {
+class CarsViewController: UIViewController {
     private let viewModel: CarsViewModel
     private let tableView =  UITableView()
     
     private lazy var loadingView = UIActivityIndicatorView(style: .large)
+    private var cellHeightCache: [IndexPath: CGFloat] = [:]
+
+    private let listingCellIdentifier = "ListingCell"
 
     init(viewModel: CarsViewModel) {
         self.viewModel = viewModel
@@ -27,6 +30,9 @@ class CarsViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(ListingCell.self, forCellReuseIdentifier: listingCellIdentifier)
 
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
@@ -72,3 +78,27 @@ class CarsViewController: UIViewController, UITableViewDelegate {
     }
 }
 
+extension CarsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cellHeightCache[indexPath] = cell.bounds.size.height
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cellHeightCache[indexPath] ?? 100
+    }
+}
+
+extension CarsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let totalListings = viewModel.listings.count
+        tableView.separatorStyle = totalListings > 0 ? .singleLine : .none
+        return totalListings
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let listingCell = tableView.dequeueReusableCell(withIdentifier: listingCellIdentifier) as? ListingCell else {
+            return UITableViewCell()
+        }
+        return listingCell
+    }
+}

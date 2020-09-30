@@ -9,8 +9,8 @@
 import UIKit
 import SnapKit
 
-class CarsViewController: UIViewController {
-    private let viewModel: CarsViewModel
+class ListingsViewController: UIViewController {
+    private let viewModel: ListingsViewModel
     private let tableView =  UITableView()
     
     private lazy var loadingView = UIActivityIndicatorView(style: .large)
@@ -18,7 +18,7 @@ class CarsViewController: UIViewController {
 
     private let listingCellIdentifier = "ListingCell"
 
-    init(viewModel: CarsViewModel) {
+    init(viewModel: ListingsViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -52,7 +52,6 @@ class CarsViewController: UIViewController {
     
     func setupBindings() {
         viewModel.state.subscribe(queue: .main, onNext: { state in
-            print(state)
             switch state {
             case .loading: self.showLoader(true)
             case .loaded:
@@ -88,7 +87,7 @@ class CarsViewController: UIViewController {
     }
 }
 
-extension CarsViewController: UITableViewDelegate {
+extension ListingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cellHeightCache[indexPath] = cell.bounds.size.height
     }
@@ -98,7 +97,7 @@ extension CarsViewController: UITableViewDelegate {
     }
 }
 
-extension CarsViewController: UITableViewDataSource {
+extension ListingsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let totalListings = viewModel.listings.count
         tableView.separatorStyle = totalListings > 0 ? .singleLine : .none

@@ -12,7 +12,7 @@
 		0EFE673325251062007E5760 /* CarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE673225251062007E5760 /* CarsViewController.swift */; };
 		0EFE673825251063007E5760 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EFE673725251063007E5760 /* Assets.xcassets */; };
 		0EFE673B25251063007E5760 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EFE673925251063007E5760 /* LaunchScreen.storyboard */; };
-		0EFE67432525114E007E5760 /* CarsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE67422525114E007E5760 /* CarsViewModel.swift */; };
+		0EFE67432525114E007E5760 /* ListingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE67422525114E007E5760 /* ListingsViewModel.swift */; };
 		0EFE67462525140F007E5760 /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE67452525140F007E5760 /* NetworkRouter.swift */; };
 		0EFE67482525142E007E5760 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE67472525142E007E5760 /* Router.swift */; };
 		0EFE674A25251457007E5760 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE674925251457007E5760 /* EndPointType.swift */; };
@@ -32,7 +32,7 @@
 		0EFE673725251063007E5760 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EFE673A25251063007E5760 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EFE673C25251063007E5760 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0EFE67422525114E007E5760 /* CarsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsViewModel.swift; sourceTree = "<group>"; };
+		0EFE67422525114E007E5760 /* ListingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsViewModel.swift; sourceTree = "<group>"; };
 		0EFE67452525140F007E5760 /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
 		0EFE67472525142E007E5760 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		0EFE674925251457007E5760 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
@@ -79,17 +79,17 @@
 		0EFE672D25251062007E5760 /* CarFax */ = {
 			isa = PBXGroup;
 			children = (
+				0EFE67A125253FE4007E5760 /* ViewModels */,
+				0EFE67A025253FDB007E5760 /* UITableViewCells */,
+				0EFE679F25253FD3007E5760 /* ViewControllers */,
 				0EFE679C2525332D007E5760 /* Extensions */,
 				0EFE674D252515B1007E5760 /* Models */,
 				0EFE6744252513E7007E5760 /* Network */,
 				0EFE672E25251062007E5760 /* AppDelegate.swift */,
 				0EFE673025251062007E5760 /* SceneDelegate.swift */,
-				0EFE673225251062007E5760 /* CarsViewController.swift */,
 				0EFE673725251063007E5760 /* Assets.xcassets */,
 				0EFE673925251063007E5760 /* LaunchScreen.storyboard */,
 				0EFE673C25251063007E5760 /* Info.plist */,
-				0EFE67422525114E007E5760 /* CarsViewModel.swift */,
-				0EFE677325252765007E5760 /* ListingCell.swift */,
 			);
 			path = CarFax;
 			sourceTree = "<group>";
@@ -120,6 +120,30 @@
 				0EFE679D25253344007E5760 /* UIImageViewExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0EFE679F25253FD3007E5760 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0EFE673225251062007E5760 /* CarsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0EFE67A025253FDB007E5760 /* UITableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				0EFE677325252765007E5760 /* ListingCell.swift */,
+			);
+			path = UITableViewCells;
+			sourceTree = "<group>";
+		};
+		0EFE67A125253FE4007E5760 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				0EFE67422525114E007E5760 /* ListingsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		1028B279F7A6FC850FBD3CFF /* Frameworks */ = {
@@ -242,7 +266,7 @@
 				0EFE673125251062007E5760 /* SceneDelegate.swift in Sources */,
 				0EFE67482525142E007E5760 /* Router.swift in Sources */,
 				0EFE674C25251502007E5760 /* ApiError.swift in Sources */,
-				0EFE67432525114E007E5760 /* CarsViewModel.swift in Sources */,
+				0EFE67432525114E007E5760 /* ListingsViewModel.swift in Sources */,
 				0EFE674A25251457007E5760 /* EndPointType.swift in Sources */,
 				0EFE677425252765007E5760 /* ListingCell.swift in Sources */,
 				0EFE679E25253344007E5760 /* UIImageViewExtensions.swift in Sources */,

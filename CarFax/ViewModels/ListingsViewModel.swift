@@ -9,7 +9,7 @@
 import Foundation
 import Snail
 
-class CarsViewModel {
+class ListingsViewModel {
     enum State {
         case loading
         case loaded

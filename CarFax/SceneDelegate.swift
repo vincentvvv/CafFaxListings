@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = CarsViewController(viewModel: CarsViewModel(carFaxService: CarFaxService()))
+        window?.rootViewController = ListingsViewController(viewModel: ListingsViewModel(carFaxService: CarFaxService()))
         window?.makeKeyAndVisible()
     }
 

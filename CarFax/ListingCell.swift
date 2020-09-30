@@ -16,7 +16,18 @@ class ListingCell: UITableViewCell {
 
     public var listing: Listing? {
         didSet {
-
+            guard let listing = listing else {
+                return
+            }
+            if let imageLink = listing.images?.firstPhoto?.medium, let url = URL(string: imageLink) {
+                photo.loadURL(url: url)
+            }
+            if let year = listing.year, let make = listing.make, let model = listing.model, let trim = listing.trim {
+                title.text = String(format: "%d %@ %@ %@", year, make, model, trim)
+            }
+            if let price = listing.listPrice, let mileage = listing.mileage, let city = listing.dealer?.city, let state = listing.dealer?.state {
+                subtitle.text = String(format: "$%d | %dk Mi | %@ %@", price, mileage / 1000, city, state)
+            }
         }
     }
 
@@ -24,16 +35,16 @@ class ListingCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         let stackView = UIStackView()
-        stackView.axis = .horizontal
+        stackView.axis = .vertical
         stackView.spacing = 2
 
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(4)
+            make.edges.equalToSuperview().inset(16)
         }
 
         photo.clipsToBounds = true
-        photo.contentMode = .scaleAspectFit
+        photo.contentMode = .scaleAspectFill
         photo.snp.makeConstraints { make in
             make.height.equalTo(200).priority(999)
         }

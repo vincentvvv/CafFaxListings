@@ -20,6 +20,7 @@
 		0EFE674F252515E8007E5760 /* CarFaxResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE674E252515E8007E5760 /* CarFaxResponse.swift */; };
 		0EFE6751252517CF007E5760 /* CarFaxService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE6750252517CF007E5760 /* CarFaxService.swift */; };
 		0EFE677425252765007E5760 /* ListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE677325252765007E5760 /* ListingCell.swift */; };
+		0EFE679E25253344007E5760 /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE679D25253344007E5760 /* UIImageViewExtensions.swift */; };
 		204F69F5EF5C33B63498A1EC /* libPods-CarFax.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AC4015CDF296513D4F3A07 /* libPods-CarFax.a */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		0EFE674E252515E8007E5760 /* CarFaxResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarFaxResponse.swift; sourceTree = "<group>"; };
 		0EFE6750252517CF007E5760 /* CarFaxService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarFaxService.swift; sourceTree = "<group>"; };
 		0EFE677325252765007E5760 /* ListingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingCell.swift; sourceTree = "<group>"; };
+		0EFE679D25253344007E5760 /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		73442EC3C4BF97376DC2D9BD /* Pods-CarFax.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarFax.debug.xcconfig"; path = "Target Support Files/Pods-CarFax/Pods-CarFax.debug.xcconfig"; sourceTree = "<group>"; };
 		99E5EFFEED2C72EE9B2F754B /* Pods-CarFax.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CarFax.release.xcconfig"; path = "Target Support Files/Pods-CarFax/Pods-CarFax.release.xcconfig"; sourceTree = "<group>"; };
 		D2AC4015CDF296513D4F3A07 /* libPods-CarFax.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CarFax.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +79,7 @@
 		0EFE672D25251062007E5760 /* CarFax */ = {
 			isa = PBXGroup;
 			children = (
+				0EFE679C2525332D007E5760 /* Extensions */,
 				0EFE674D252515B1007E5760 /* Models */,
 				0EFE6744252513E7007E5760 /* Network */,
 				0EFE672E25251062007E5760 /* AppDelegate.swift */,
@@ -109,6 +112,14 @@
 				0EFE674E252515E8007E5760 /* CarFaxResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		0EFE679C2525332D007E5760 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0EFE679D25253344007E5760 /* UIImageViewExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		1028B279F7A6FC850FBD3CFF /* Frameworks */ = {
@@ -234,6 +245,7 @@
 				0EFE67432525114E007E5760 /* CarsViewModel.swift in Sources */,
 				0EFE674A25251457007E5760 /* EndPointType.swift in Sources */,
 				0EFE677425252765007E5760 /* ListingCell.swift in Sources */,
+				0EFE679E25253344007E5760 /* UIImageViewExtensions.swift in Sources */,
 				0EFE674F252515E8007E5760 /* CarFaxResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

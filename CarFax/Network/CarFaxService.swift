@@ -19,8 +19,7 @@ class CarFaxService {
             }
             do {
                 onNext?(try JSONDecoder().decode(CardFaxResponse.self, from: jsonData).listings ?? [])
-            } catch let error {
-                print(error)
+            } catch {
                 onError?(ApiError.decode)
             }
         }

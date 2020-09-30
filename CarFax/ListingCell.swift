@@ -13,6 +13,7 @@ class ListingCell: UITableViewCell {
     private let photo = UIImageView()
     private let title = UILabel()
     private let subtitle = UILabel()
+    private let phoneButton = UIButton(type: .system)
 
     public var listing: Listing? {
         didSet {
@@ -22,11 +23,17 @@ class ListingCell: UITableViewCell {
             if let imageLink = listing.images?.firstPhoto?.medium, let url = URL(string: imageLink) {
                 photo.loadURL(url: url)
             }
+
             if let year = listing.year, let make = listing.make, let model = listing.model, let trim = listing.trim {
                 title.text = String(format: "%d %@ %@ %@", year, make, model, trim)
             }
+
             if let price = listing.listPrice, let mileage = listing.mileage, let city = listing.dealer?.city, let state = listing.dealer?.state {
                 subtitle.text = String(format: "$%d | %dk Mi | %@ %@", price, mileage / 1000, city, state)
+            }
+            if let phone = listing.dealer?.phone {
+                phoneButton.setTitle(String(format: "Call: %@", phone), for: .normal)
+                phoneButton.isHidden = false
             }
         }
     }
@@ -36,7 +43,7 @@ class ListingCell: UITableViewCell {
 
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 2
+        stackView.spacing = 4
 
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
@@ -50,9 +57,15 @@ class ListingCell: UITableViewCell {
         }
 
         title.font = .boldSystemFont(ofSize: 20)
+
+        phoneButton.backgroundColor = .black
+        phoneButton.setTitleColor(.white, for: .normal)
+        phoneButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+
         stackView.addArrangedSubview(photo)
         stackView.addArrangedSubview(title)
         stackView.addArrangedSubview(subtitle)
+        stackView.addArrangedSubview(phoneButton)
     }
 
     required init?(coder: NSCoder) {
@@ -61,8 +74,9 @@ class ListingCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        title.text = nil
-        subtitle.text = nil
-        photo.image = nil
+        title.text = "-"
+        subtitle.text = "-"
+        photo.image = #imageLiteral(resourceName: "carPlaceholder")
+        phoneButton.isHidden = true
     }
 }

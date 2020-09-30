@@ -36,6 +36,7 @@ class CarsViewModel {
         state.on(.next(.loading))
 
         carFaxService.getListings(onNext: { [weak self] listings in
+            print("Got listings")
             self?.listings = listings
             self?.state.on(.next(.loaded))
         }, onError: { [weak self] error in

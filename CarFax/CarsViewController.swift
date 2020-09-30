@@ -52,6 +52,7 @@ class CarsViewController: UIViewController {
     
     func setupBindings() {
         viewModel.state.subscribe(queue: .main, onNext: { state in
+            print(state)
             switch state {
             case .loading: self.showLoader(true)
             case .loaded:

@@ -15,6 +15,8 @@ class ListingCell: UITableViewCell {
     private let subtitle = UILabel()
     private let phoneButton = UIButton(type: .system)
 
+    public var onTapPhoneButton: ((String) -> Void)?
+
     public var listing: Listing? {
         didSet {
             guard let listing = listing else {
@@ -66,6 +68,15 @@ class ListingCell: UITableViewCell {
         stackView.addArrangedSubview(title)
         stackView.addArrangedSubview(subtitle)
         stackView.addArrangedSubview(phoneButton)
+
+        phoneButton.addTarget(self, action: #selector(tapPhone), for: .touchDown)
+    }
+
+    @objc func tapPhone() {
+        guard let phone = listing?.dealer?.phone else {
+            return
+        }
+        onTapPhoneButton?(phone)
     }
 
     required init?(coder: NSCoder) {

@@ -68,15 +68,23 @@ class CarsViewController: UIViewController {
         }).add(to: disposer)
     }
 
-    func showLoader(_ loading: Bool) {
+    private func showLoader(_ loading: Bool) {
         loadingView.isHidden = !loading
         loading ? loadingView.startAnimating() : loadingView.stopAnimating()
     }
 
-    func showAlert(title: String, message: String) {
+    private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
         present(alert, animated: true)
+    }
+
+    private func callDealer(phone: String) {
+        guard let url = URL(string: String(format: "tel://%@", phone)), UIApplication.shared.canOpenURL(url) else {
+            showAlert(title: "Error", message: String(format: "Unable to make phone call to: %@", phone))
+            return
+        }
+        UIApplication.shared.open(url)
     }
 }
 
@@ -102,6 +110,9 @@ extension CarsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         listingCell.listing = viewModel.getListing(at: indexPath.row)
+        listingCell.onTapPhoneButton = { [weak self] phone in
+            self?.callDealer(phone: phone)
+        }
         return listingCell
     }
 }

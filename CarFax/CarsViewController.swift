@@ -27,6 +27,7 @@ class CarsViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaInsets)
@@ -43,8 +44,31 @@ class CarsViewController: UIViewController, UITableViewDelegate {
         viewModel.fetchListings()
     }
     
-    private func setupBindings() {
-        
-    }    
+    func setupBindings() {
+        viewModel.state.subscribe(queue: .main, onNext: { state in
+            switch state {
+            case .loading: self.showLoader(true)
+            case .loaded:
+                self.showLoader(false)
+                self.tableView.reloadData()
+                if self.viewModel.listings.count == 0 {
+                    self.showAlert(title: "Empty", message: "No listings available")
+                }
+            case .error(let error):
+                self.showLoader(false)
+                self.showAlert(title: "Error", message: error.message ?? "Error")
+            }
+        }).add(to: disposer)
+    }
+
+    func showLoader(_ loading: Bool) {
+        loadingView.isHidden = !loading
+        loading ? loadingView.startAnimating() : loadingView.stopAnimating()
+    }
+
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        present(alert, animated: true)
+    }
 }
 

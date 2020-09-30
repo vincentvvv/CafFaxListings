@@ -18,6 +18,8 @@ class CarsViewModel {
 
     public var state = Observable<State>()
     private let carFaxService: CarFaxService
+    
+    var listings: [Listing] = []
 
     init(carFaxService: CarFaxService) {
         self.carFaxService = carFaxService
@@ -27,6 +29,7 @@ class CarsViewModel {
         state.on(.next(.loading))
 
         carFaxService.getListings(onNext: { [weak self] listings in
+            self?.listings = listings
             self?.state.on(.next(.loaded))
         }, onError: { [weak self] error in
             self?.state.on(.next(.error(error: error)))

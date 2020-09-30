@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import SnapKit
 
-class CarsViewController: UIViewController {
+class CarsViewController: UIViewController, UITableViewDelegate {
     private let viewModel: CarsViewModel
+    private let tableView =  UITableView()
+    
+    private lazy var loadingView = UIActivityIndicatorView(style: .large)
 
     init(viewModel: CarsViewModel) {
         self.viewModel = viewModel
@@ -22,8 +26,25 @@ class CarsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaInsets)
+            make.bottom.left.right.equalToSuperview()
+        }
+
+        loadingView.isHidden = true
+        view.addSubview(loadingView)
+        loadingView.snp.makeConstraints { make in
+            make.edges.equalTo(tableView)
+        }
+
+        setupBindings()
         viewModel.fetchListings()
     }
+    
+    private func setupBindings() {
+        
+    }    
 }
 

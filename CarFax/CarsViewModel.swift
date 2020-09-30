@@ -7,3 +7,19 @@
 //
 
 import Foundation
+import Snail
+
+class CarsViewModel {
+    enum State {
+        case loading
+        case loaded
+    }
+
+    public var state = Observable<State>()
+
+    init() {}
+
+    func fetchCars() {
+        state.on(.next(.loading))
+    }
+}
